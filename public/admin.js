@@ -98,7 +98,6 @@ function checkUserAuth() {
                 const data = snapshot.val() || {};
                 const state = Object.values(data)
 
-                console.log(data);
 
 
                 if (state.length === 0) {
@@ -636,7 +635,6 @@ function save() {
 
 save();
 
-console.log(products);
 
 
 
