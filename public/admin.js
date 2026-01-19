@@ -88,6 +88,35 @@ function checkUserAuth() {
             animation()
             dispMessage();
 
+
+
+
+
+
+            var userRef = firebase.database().ref("users");
+            userRef.on("value", (snapshot) => {
+                const data = snapshot.val() || {};
+                const state = Object.values(data)
+
+                console.log(data);
+
+
+                if (state.length === 0) {
+                    displayResult.innerHTML = "<h3 class='empty-car'>No Users Available</h3>";
+                    return;
+                }
+
+                displayResult.innerHTML = "";
+
+                state.forEach((member, index) => {
+                    displayResult.innerHTML += `<div class="display">
+              <div class="display-image">${member.name.slice(0, 1)}</div>
+              <b class="display-name">${member.name}</b>
+              <b class="display-email">${member.email}</b>
+            </div>`;
+                });
+            });
+
         } else {
             location.href = "form.html";
         }
@@ -607,22 +636,11 @@ function save() {
 
 save();
 
+console.log(products);
 
-var starCountRef = firebase.database().ref("users");
-starCountRef.on("value", (snapshot) => {
-    const data = snapshot.val() || {};
 
-    let state = Object.values(data);
 
-    displayResult.innerHTML = "";
-    state.forEach((member, index) => {
-        displayResult.innerHTML += `<div class="display">
-              <div class="display-image">${member.name.slice(0, 1)}</div>
-              <b class="display-name">${member.name}</b>
-              <b class="display-email">${member.email}</b>
-            </div>`;
-    });
-});
+
 
 function product() {
     var starCountRef = database.ref("goods/");
