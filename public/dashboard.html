@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="pack.jpg" type="image/x-icon" />
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-database-compat.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      // Initialize EmailJS with your public key
+      emailjs.init("gxYSfJyipEA23MTMZ");
+    </script>
+
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="notification" onclick="openMessage()">
+      <div class="notify"><span id="name-send"></span></div>
+      <div class="notification-pic">
+        <h4 id="name-sends"></h4>
+        <audio id="audio" src="notification.mp3">Play</audio>
+        <p id="send-message"></p>
+      </div>
+    </div>
+    <div class="message-history">
+      <div class="message-nav">
+        <span onclick="openMessage()" style="cursor: pointer" id="left-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#2e73b8"
+          >
+            <path
+              d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"
+            />
+          </svg>
+        </span>
+      </div>
+      <div class="message-body"></div>
+      <div class="drop-message">
+        <input id="messageInput" type="text" />
+        <button onclick="sendMessage(this)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18px"
+            viewBox="0 -960 960 960"
+            width="18px"
+            fill="white"
+          >
+            <path
+              d="m226-559 78 33q14-28 29-54t33-52l-56-11-84 84Zm142 83 114 113q42-16 90-49t90-75q70-70 109.5-155.5T806-800q-72-5-158 34.5T492-656q-42 42-75 90t-49 90Zm178-65q-23-23-23-56.5t23-56.5q23-23 57-23t57 23q23 23 23 56.5T660-541q-23 23-57 23t-57-23Zm19 321 84-84-11-56q-26 18-52 32.5T532-299l33 79Zm313-653q19 121-23.5 235.5T708-419l20 99q4 20-2 39t-20 33L538-80l-84-197-171-171-197-84 167-168q14-14 33.5-20t39.5-2l99 20q104-104 218-147t235-24ZM157-321q35-35 85.5-35.5T328-322q35 35 34.5 85.5T327-151q-25 25-83.5 43T82-76q14-103 32-161.5t43-83.5Zm57 56q-10 10-20 36.5T180-175q27-4 53.5-13.5T270-208q12-12 13-29t-11-29q-12-12-29-11.5T214-265Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="alert">
+      <div class="content">
+        <img
+          src="https://i.pinimg.com/1200x/2c/7b/be/2c7bbeb42fa01dcc040161e00544e1e7.jpg"
+          alt=""
+        />
+        <small class="small"></small>
+      </div>
+      <p id="read"></p>
+    </div>
+    <nav>
+      <div class="nav-left">
+        <span class="left-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#2e73b8"
+          >
+            <path
+              d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+            />
+          </svg>
+        </span>
+        <h2>Sparkle Tech</h2>
+      </div>
+      <button onclick="showCart()">Sparkle Store</button>
+      <button onclick="showSet()">Settings</button>
+      <div class="nav-right">
+        <h3 id="nav-name"></h3>
+        <span id="navPic"></span>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="hero-child">
+        <div class="top-box">
+          <h1>Welcome back, <span id="topName">...</span>! 👋</h1>
+          <p>Here's what's happening with your favourite appliances today</p>
+        </div>
+        <div class="bottom-box">
+          <div class="hero-box">
+            <span class="svgs-hold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11L160-252Zm320-228Z"
+                />
+              </svg>
+            </span>
+            <div class="hero-box-child">
+              <h2 id="orderNum">0</h2>
+              <span>Total Orders</span>
+            </div>
+          </div>
+
+          <div class="hero-box">
+            <span class="svgs-hold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z"
+                />
+              </svg>
+            </span>
+            <div class="hero-box-child">
+              <h2 id="movingNum">0</h2>
+              <span>In Transit</span>
+            </div>
+          </div>
+
+          <div class="hero-box">
+            <span class="svgs-hold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"
+                />
+              </svg>
+            </span>
+            <div class="hero-box-child">
+              <h2 id="subNum">LEVEL 1</h2>
+              <span>Account Status</span>
+            </div>
+          </div>
+
+          <div class="hero-box">
+            <span class="svgs-hold">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="M441-120v-86q-53-12-91.5-46T293-348l74-30q15 48 44.5 73t77.5 25q41 0 69.5-18.5T587-356q0-35-22-55.5T463-458q-86-27-118-64.5T313-614q0-65 42-101t86-41v-84h80v84q50 8 82.5 36.5T651-650l-74 32q-12-32-34-48t-60-16q-44 0-67 19.5T393-614q0 33 30 52t104 40q69 20 104.5 63.5T667-358q0 71-42 108t-104 46v84h-80Z"
+                />
+              </svg>
+            </span>
+            <div class="hero-box-child">
+              <h2 id="moneys">₦ 0</h2>
+              <span>Total Spent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="set">
+        <div class="active">
+          <h3>🎉 A Welcome Package From ~👍Developer✨~</h3>
+          <p>We are offering 20% discount for every account created</p>
+          <div class="plan-flow">
+            <div class="each-plan">
+              <h4>What's next on your shopping dashboard</h4>
+              <p>
+                We've got you covered in every aspect. Either buying, ordering,
+                adding to cart, ....
+              </p>
+            </div>
+          </div>
+          <button onclick="showCart()">Manage Your Store</button>
+        </div>
+
+        <div class="recent-orders">
+          <h2>Recent Orders</h2>
+          <div class="nav-recent"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="goods">
+      <div class="choice-head">
+        <h1>Available Products</h1>
+        <p>Choose any products of your choice</p>
+
+        <div class="nav-middle">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="rgb(0, 98, 255)"
+          >
+            <path
+              d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+            />
+          </svg>
+          <input
+            oninput="showing(this)"
+            maxlength="25"
+            type="text"
+            placeholder="Search For Items"
+          />
+        </div>
+      </div>
+
+      <div class="products"></div>
+    </div>
+
+    <div class="add-control">
+      <h1>Active Buttons</h1>
+      <button class="add-goods" onclick="viewReceipts()">View Receipts</button>
+      <button class="add-goods" id="checker" onclick="viewDiscount()">
+        Discounted Goods
+      </button>
+      <button class="add-goods" onclick="goGame()">Have Fun</button>
+      <button id="showf" class="add-goods" onclick="showCart()">
+        Sparkle Store
+      </button>
+      <button id="showf" class="add-goods" onclick="showSet()">Settings</button>
+    </div>
+
+    <div id="map">
+      <div class="choice-head">
+        <h1>Locate Us</h1>
+        <p>Get to know where we are located</p>
+      </div>
+
+      <iframe
+        id="flownt"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.343297583665!2d3.8789679740034746!3d7.4272086925834255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039f2ceaac1f66b%3A0xe0e85f6ca0ffe2c8!2sWest%20Africa%20Examination%20Council%20Zonal%20Office!5e0!3m2!1sen!2sng!4v1764684134480!5m2!1sen!2sng"
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+
+      <a
+        href="https://www.google.com/maps/dir/?api=1&destination=WAEC+Zonal+Office,+Ijokodo,+Ibadan,+Nigeria"
+        target="_blank"
+      >
+        Get Directions to Us
+      </a>
+    </div>
+
+    <div class="touch">
+      <div class="choice-head">
+        <h1>Get in Touch</h1>
+        <p>Have questions? We're here to help you 24/7</p>
+      </div>
+
+      <div class="touch-set">
+        <div class="left-set">
+          <div class="top-set">
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"
+                  />
+                </svg>
+              </span>
+              <h2>Phone</h2>
+              <div class="set-child">
+                <span>0916 306 7741</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
+                  />
+                </svg>
+              </span>
+              <h2>Email</h2>
+              <div class="set-child">
+                <span>adebayoq1234567@gmail.com</span>
+                <span>adebayoq12345@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
+                  />
+                </svg>
+              </span>
+              <h2>Address</h2>
+              <div class="set-child">
+                <span>Beside WAEC Office</span>
+                <span>Ijokodo, Ibadan</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+                  />
+                </svg>
+              </span>
+              <h2>Hours</h2>
+              <div class="set-child">
+                <span>Mon-Sat: 7AM - 8PM</span>
+                <span>Sun: 8AM - 6PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-set">
+            <div class="set-nav">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="19px"
+                viewBox="0 -960 960 960"
+                width="19px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+                />
+              </svg>
+              <h4>Emergency Service</h4>
+            </div>
+            <span>Need appliances urgently? Call our emergency hotline:</span>
+            <h3>0916 306 7741</h3>
+          </div>
+        </div>
+        <div class="right-set">
+          <div class="form-set">
+            <h2>Send us a Message</h2>
+            <div class="separate">
+              <div class="form-group">
+                <div class="label2-con">
+                  <label for="">First Name</label>
+                  <input type="text" id="firstName" placeholder="John" />
+                </div>
+                <div class="label2-con">
+                  <label for="">Last Name</label>
+                  <input type="text" id="lastName" placeholder="Doe" />
+                </div>
+              </div>
+              <div class="label-con">
+                <label for="">Email</label>
+                <input type="email" id="email" placeholder="john@example.com" />
+              </div>
+              <div class="label-con">
+                <label for="">Number</label>
+                <input
+                  type="number"
+                  id="number"
+                  placeholder="+1 (555) 000-0000"
+                />
+              </div>
+              <textarea
+                id="message"
+                placeholder="How can we help you"
+              ></textarea>
+              <button id="send">Send Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="receipts">
+      <h1>Receipts</h1>
+      <span
+        onclick="backReps()"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="30px"
+          viewBox="0 -960 960 960"
+          width="30px"
+          fill="white"
+          style="transform: rotate(180deg)"
+        >
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+      </span>
+      <div class="receipt-son"></div>
+    </div>
+
+    <div id="event"></div>
+
+    <div class="footer">
+      <div class="first-foot">
+        <div class="foot-top">
+          <span class="spanner">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="white"
+            >
+              <path
+                d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+              />
+            </svg>
+          </span>
+          <h2>Sparkle Tech</h2>
+        </div>
+        <span
+          >Your trusted partner for good devices and delivery services. Fast,
+          reliable, and always on time</span
+        >
+      </div>
+      <div class="second-foot">
+        <h3>Services</h3>
+        <p>Sell Electronics</p>
+        <span>Products Delivery</span>
+        <span>Bulk Orders</span>
+        <span>Discounted Products</span>
+      </div>
+      <div class="second-foot">
+        <h3>Company</h3>
+        <p>About Us</p>
+        <span>Contack</span>
+        <span>Careers</span>
+        <span>Blog</span>
+      </div>
+      <div class="second-foot">
+        <h3>Support</h3>
+        <p>Help Center</p>
+        <span>Track Order</span>
+        <span>privacy Policy</span>
+        <span>Terms of Service</span>
+      </div>
+    </div>
+
+    <div id="main">
+      <div id="preview"></div>
+    </div>
+
+    <div id="games">
+      <span
+        id="goto"
+        onclick="backGame()"
+        class="winners"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="30px"
+          viewBox="0 -960 960 960"
+          width="30px"
+          fill="white"
+        >
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+      </span>
+      <h1>Endless Game</h1>
+
+      <div class="game-set">
+        <div class="start-game">
+          <h2 id="floay">Use The Arrow Keys To Move The Car</h2>
+          <h2 id="flowy">Use The Buttons To Move The Car</h2>
+          <button onclick="startGame()">Start Game</button>
+        </div>
+        <h2 class="high-s">High Score: 0</h2>
+        <div class="road">
+          <b class="scored">0</b>
+          <div class="son">
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+          </div>
+          <div class="line"></div>
+          <div class="son">
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+            <div class="lines"></div>
+          </div>
+
+          <img id="user" src="blue.png" alt="" />
+          <div class="car-store"></div>
+        </div>
+        <div class="btn-set">
+          <button onclick="up()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="white"
+            >
+              <path
+                d="m296-224-56-56 240-240 240 240-56 56-184-183-184 183Zm0-240-56-56 240-240 240 240-56 56-184-183-184 183Z"
+              />
+            </svg>
+          </button>
+          <div class="cont">
+            <button onclick="left()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="white"
+              >
+                <path
+                  d="M440-240 200-480l240-240 56 56-183 184 183 184-56 56Zm264 0L464-480l240-240 56 56-183 184 183 184-56 56Z"
+                />
+              </svg>
+            </button>
+            <button onclick="right()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="white"
+              >
+                <path
+                  d="M383-480 200-664l56-56 240 240-240 240-56-56 183-184Zm264 0L464-664l56-56 240 240-240 240-56-56 183-184Z"
+                />
+              </svg>
+            </button>
+          </div>
+          <button onclick="down()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="white"
+            >
+              <path
+                d="M480-200 240-440l56-56 184 183 184-183 56 56-240 240Zm0-240L240-680l56-56 184 183 184-183 56 56-240 240Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="receipt"></div>
+
+    <div id="settings">
+      <span
+        id="goto"
+        onclick="backSet()"
+        class="winners"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="30px"
+          viewBox="0 -960 960 960"
+          width="30px"
+          fill="white"
+        >
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+      </span>
+      <button id="log" onclick="logOut()">Log Out</button>
+      <h1>Settings</h1>
+      <div class="body-set">
+        <div class="set-set">
+          <div class="set-each">
+            <h3>Username</h3>
+            <input
+              id="setName"
+              placeholder="John Doe"
+              maxlength="25"
+              type="text"
+            />
+          </div>
+
+          <div class="set-each">
+            <h3>Email</h3>
+            <input
+              id="setEmail"
+              maxlength="30"
+              placeholder="example@gmail.com"
+              type="text"
+            />
+          </div>
+
+          <div class="set-each">
+            <h3>Password</h3>
+            <input
+              id="setPass"
+              maxlength="15"
+              value="pA$$W0rd..."
+              type="text"
+            />
+          </div>
+
+          <div class="set-each">
+            <h3>Account Status</h3>
+            <b>Level 1</b>
+          </div>
+        </div>
+
+        <div class="add-control">
+          <button class="add-change" onclick="setChanges(this)">
+            Set Changes
+          </button>
+
+          <button class="add-change" onclick="deActivate(this)">
+            Deactivate Account
+          </button>
+        </div>
+
+        <div class="choice-set">
+          <div id="active1" class="choice-box">
+            <span class="eff">LEVEL 1</span>
+            <h3>LEVEL 1</h3>
+            <div class="text-row">
+              <div class="each-text">
+                <h2>₦0</h2>
+                <span>/For Once</span>
+              </div>
+              <div class="dispenser-mark">
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>3 discounted devices</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>20% discount on deliveries</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>Free Maintenance of device</span>
+                </div>
+              </div>
+            </div>
+            <button>Active</button>
+          </div>
+
+          <div id="active2" class="choice-box">
+            <span class="eff">LEVEL 2</span>
+            <h3>LEVEL 2</h3>
+            <div class="text-row">
+              <div class="each-text">
+                <h2>₦30,000</h2>
+                <span>/For Once</span>
+              </div>
+              <div class="dispenser-mark">
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>6 discounted devices</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>40% discount on deliveries</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>Priority Customer Support</span>
+                </div>
+              </div>
+            </div>
+            <button id="lever">Coming Soon</button>
+          </div>
+
+          <div id="active3" class="choice-box">
+            <span class="eff">LEVEL 3</span>
+            <h3>LEVEL 3</h3>
+            <div class="text-row">
+              <div class="each-text">
+                <h2>₦70,000</h2>
+                <span>/For Once</span>
+              </div>
+              <div class="dispenser-mark">
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>10 discounted devices</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>70% discount on deliveries</span>
+                </div>
+                <div class="each-mark">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="24px"
+                    viewBox="0 -960 960 960"
+                    width="24px"
+                    fill="rgb(0, 98, 255)"
+                  >
+                    <path
+                      d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"
+                    />
+                  </svg>
+                  <span>Elite devices unlocked</span>
+                </div>
+              </div>
+            </div>
+            <button id="lever">Coming Soon</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="hist">
+      <span
+        onclick="backCart()"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="30px"
+          viewBox="0 -960 960 960"
+          width="30px"
+          fill="white"
+        >
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+      </span>
+      <h1>Activity History</h1>
+      <div class="history-set">
+        <div class="cart-history histo">
+          <h2>My Cart</h2>
+          <div class="cart-result"></div>
+        </div>
+        <div class="purchased-history histo">
+          <h2>Purchased Goods</h2>
+
+          <div class="purchased-result"></div>
+        </div>
+        <div class="ordered-history histo">
+          <h2>Price Cuts</h2>
+          <div class="act-result"></div>
+        </div>
+        <div class="ordered-history histo">
+          <h2>Ordered Products</h2>
+
+          <div class="order-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="discount">
+      <span
+        id="goto"
+        onclick="backCount()"
+        class="winners"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="30px"
+          viewBox="0 -960 960 960"
+          width="30px"
+          fill="white"
+        >
+          <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+        </svg>
+      </span>
+      <h1>Discounted Products</h1>
+
+      <div class="body-discount">
+        <div class="body-disc"></div>
+        <div class="btnn-set">
+          <button onclick="buyAll(event, this)">Buy All</button>
+          <button onclick="orderAll(event, this)">Order All</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script src="dashboard.js"></script>

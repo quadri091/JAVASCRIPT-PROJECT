@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="admin.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-database-compat.js"></script>
+    <link rel="shortcut icon" href="pack.jpg" type="image/x-icon" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+     <div class="notification" onclick="openMessage()">
+      <div class="notify"><span id="name-send"></span></div>
+      <div class="notification-pic">
+        <h4 id="name-sends"></h4>
+        <audio id="audio" src="notification.mp3">Play</audio>
+        <p id="send-message"></p>
+      </div>
+    </div>
+    <div class="message-history">
+      <div class="message-nav">
+        <span onclick="openMessage()" style="cursor: pointer" id="left-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#2e73b8"
+          >
+            <path
+              d="M240-400h320v-80H240v80Zm0-120h480v-80H240v80Zm0-120h480v-80H240v80ZM80-80v-720q0-33 23.5-56.5T160-880h640q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H240L80-80Zm126-240h594v-480H160v525l46-45Zm-46 0v-480 480Z"
+            />
+          </svg>
+        </span>
+      </div>
+      <div class="message-body"></div>
+      <div class="drop-message">
+        <input id="messageInput" type="text" />
+        <button onclick="sendMessage(this)">
+          <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="white"><path d="m226-559 78 33q14-28 29-54t33-52l-56-11-84 84Zm142 83 114 113q42-16 90-49t90-75q70-70 109.5-155.5T806-800q-72-5-158 34.5T492-656q-42 42-75 90t-49 90Zm178-65q-23-23-23-56.5t23-56.5q23-23 57-23t57 23q23 23 23 56.5T660-541q-23 23-57 23t-57-23Zm19 321 84-84-11-56q-26 18-52 32.5T532-299l33 79Zm313-653q19 121-23.5 235.5T708-419l20 99q4 20-2 39t-20 33L538-80l-84-197-171-171-197-84 167-168q14-14 33.5-20t39.5-2l99 20q104-104 218-147t235-24ZM157-321q35-35 85.5-35.5T328-322q35 35 34.5 85.5T327-151q-25 25-83.5 43T82-76q14-103 32-161.5t43-83.5Zm57 56q-10 10-20 36.5T180-175q27-4 53.5-13.5T270-208q12-12 13-29t-11-29q-12-12-29-11.5T214-265Z"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav>
+      <div class="nav-left">
+        <span class="left-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#2e73b8"
+          >
+            <path
+              d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+            />
+          </svg>
+        </span>
+        <h2>Sparkle Tech</h2>
+      </div>
+
+      <button onclick="viewReceipts()">View Receipts</button>
+      <button onclick="logOut()">Log Out</button>
+      <div class="nav-right">
+        <h3 id="nav-name"></h3>
+        <span id="navPic"></span>
+      </div>
+    </nav>
+
+    <div class="page">
+      <div class="overview">
+        <div class="top-box">
+          <h1>Welcome back, <span id="topName">~👍Developer⭐~</span></h1>
+          <p>Monitoring performance and connectivity across the appliance network.</p>
+        </div>
+        <div class="hero-box">
+          <span class="svgs-hold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#2e73b8"
+            >
+              <path
+                d="M400-400q-50 0-85-35t-35-85q0-22 7-41.5t21-35.5q-4-10-6-21t-2-22q0-38 20.5-67.5T374-751q20-23 47-36t59-13q32 0 59 13t47 36q33 14 53.5 43.5T660-640q0 11-2 22t-6 21q14 16 21 35.5t7 41.5q0 50-35 85t-85 35H400Zm0-80h160q17 0 28.5-12t11.5-28q0-7-2.5-13t-7.5-12q-11-13-14.5-25.5T572-594q0-16 4-27.5t4-18.5q0-12-7-22t-18-15q-9-4-16.5-9T525-699q-5-6-16.5-13.5T480-720q-17 0-28.5 8T435-698q-6 7-13.5 12t-16.5 9q-11 5-18 15t-7 22q0 7 4 18.5t4 27.5q0 11-3.5 23.5T370-545q-5 6-7.5 12t-2.5 13q0 16 11.5 28t28.5 12ZM160-80v-112q0-34 17.5-62.5T224-298q62-31 126-46.5T480-360q66 0 130 15.5T736-298q29 15 46.5 43.5T800-192v112H160Zm80-80h480v-32q0-11-5.5-20T700-226q-54-27-109-40.5T480-280q-56 0-111 13.5T260-226q-9 5-14.5 14t-5.5 20v32Zm240 0Zm0-320Z"
+              />
+            </svg>
+          </span>
+          <div class="hero-box-child">
+            <h2 id="users">0</h2>
+            <span>Total Users</span>
+          </div>
+        </div>
+
+        <div class="hero-box">
+          <span class="svgs-hold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#2e73b8"
+            >
+              <path
+                d="M841-518v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13ZM201-200h560v-282q-5 2-6.5 2H751q-27 0-47.5-9T663-518q-18 18-41 28t-49 10q-27 0-50.5-10T481-518q-17 18-39.5 28T393-480q-29 0-52.5-10T299-518q-21 21-41.5 29.5T211-480h-4.5q-2.5 0-5.5-2v282Zm560 0H201h560Z"
+              />
+            </svg>
+          </span>
+          <div class="hero-box-child">
+            <h2 id="products">0</h2>
+            <span>Total Products</span>
+          </div>
+        </div>
+
+        <div class="hero-box">
+          <span class="svgs-hold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#2e73b8"
+            >
+              <path
+                d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z"
+              />
+            </svg>
+          </span>
+          <div class="hero-box-child">
+            <h2 id="order">0</h2>
+            <span>Total Orders</span>
+          </div>
+        </div>
+
+        <div class="hero-box">
+          <span class="svgs-hold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#2e73b8"
+            >
+              <path
+                d="M441-120v-86q-53-12-91.5-46T293-348l74-30q15 48 44.5 73t77.5 25q41 0 69.5-18.5T587-356q0-35-22-55.5T463-458q-86-27-118-64.5T313-614q0-65 42-101t86-41v-84h80v84q50 8 82.5 36.5T651-650l-74 32q-12-32-34-48t-60-16q-44 0-67 19.5T393-614q0 33 30 52t104 40q69 20 104.5 63.5T667-358q0 71-42 108t-104 46v84h-80Z"
+              />
+            </svg>
+          </span>
+          <div class="hero-box-child">
+            <h2 id="money">0</h2>
+            <span>Total Revenue</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="user-details">
+        <div class="user-son">
+          <div class="user-each">
+            <h2>Available Users</h2>
+            <div class="display-result">
+            </div>
+          </div>
+          <div class="user-each">
+            <h2>Ordered Goods</h2>
+            <div class="dispOrder">
+            </div>
+          </div>
+          <div class="user-each">
+            <h2>Purchased Goods</h2>
+            <div class="dispPur">
+            </div>
+          </div>
+
+          <div class="user-each">
+            <h2>Offers</h2>
+            <div class="dispDisc">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="goods">
+      <div class="choice-head">
+        <h1>Pushed Products</h1>
+      </div>
+
+      <div class="products"></div>
+    </div>
+
+    <div class="add-control">
+      <h1>Active Buttons</h1>
+      <button class="add-goods" onclick="backs()">Add Product</button>
+      <button id="deleter" class="add-goods" onclick="viewReceipts()">View Receipts</button id="deleter" class="add-goods">
+      <button id="deleter" class="add-goods" onclick="logOut()">Log Out</button>
+    </div>
+    <div id="mains"></div>
+    <div id="main">
+      <div id="preview">
+        <span
+          onclick="goBack()"
+          style="
+            display: flex;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="18px"
+            viewBox="0 -960 960 960"
+            width="18px"
+            fill="white"
+          >
+            <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+          </svg>
+        </span>
+        <div class="choice-head">
+          <h1>Push A Product</h1>
+        </div>
+        <div class="top-prev">
+          <div class="left-prev">
+            <img
+              id="pushPick"
+              src="https://i.pinimg.com/1200x/fa/47/c9/fa47c99a76bca52020b4cd103e48111e.jpg"
+              onclick="document.getElementById('pushInp').click()"
+            />
+            <input
+              id="pushInp"
+              type="file"
+              onchange="pick(event)"
+              style="display: none"
+            />
+          </div>
+          <div class="right-prev">
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushName">Name: </b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushCat">Category: </b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushPrice">Price: ₦</b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushDesc">Description: </b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushStock">Stock: </b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushRat">Ratings: </b>
+            </div>
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushUnit">Unit: </b>
+            </div>
+
+            <div contenteditable="true" class="detail-pre">
+              <b id="pushSold">Sold: </b>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-prev">
+          <button onclick="addProduct()">Push Product</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="receipt">
+      <h1>Receipts</h1>
+      <span
+        onclick="backRep()"
+        style="
+          display: flex;
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="18px"
+          viewBox="0 -960 960 960"
+          width="18px"
+          fill="white"
+        >
+          <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+        </svg>
+      </span>
+      <div class="receipt-son"></div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+<script src="admin.obf.js"> </script>

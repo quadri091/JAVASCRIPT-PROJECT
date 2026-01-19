@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="landing.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.6.0/firebase-database-compat.js"></script>
+   <link rel="shortcut icon" href="pack.jpg" type="image/x-icon" />
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("gxYSfJyipEA23MTMZ");
+  </script>
+
+  <title>Landing Page</title>
+</head>
+
+<body>
+    <div class="boxed"></div>
+  <div class="main">
+    <nav>
+    <div class="nav-left">
+      <a href="#hero" class="left-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8"><path d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"/></svg>
+      </a>
+      <h2>Sparkle Tech</h2>
+    </div>
+
+    <div class="nav-middle">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+        fill="rgb(0, 98, 255)">
+        <path
+          d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+      </svg>
+      <input oninput="searching(this)" maxlength="25" type="text" placeholder="Search For Items" />
+    </div>
+
+    <div class="nav-right">
+      <a href="#goods" class="first-act">Products</a>
+      <a href="#why" class="second-act">Why Choose Us</a>
+      <a href="#map" class="third-act">Find Us</a>
+      <button class="signup-btn" onclick="link()">Join Us Now</button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <main class="hero-son">
+      <div class="control">
+        <span class="holder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#2e73b8"
+          >
+            <path
+              d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+            />
+          </svg>
+          <span>Charge up, Power your life...</span>
+        </span>
+        <div class="text">
+          <span>Sparkle Tech!</span>
+          <div class="line-text">
+            <span id="flow"></span>
+            <span id="line"></span>
+          </div>
+        </div>
+        <p>
+          Experience the convenience of cutting-edge gadgets delivered right to your
+          doorstep. Sign up today and enjoy top-notch tech support!
+        </p>
+        <div class="button-set">
+          <button class="btns" onclick="link()">Order Now</button>
+          <button class="btn" onclick="scrollPro()">View Products</button>
+        </div>
+        <div class="under-b">
+          <div class="each-under">
+            <span class="svg-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="rgb(0, 98, 255)">
+                <path
+                  d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z" />
+              </svg>
+            </span>
+            <div class="under-text">
+              <h4>Flexible Scheduling</h4>
+              <span>Easy and reliable order</span>
+            </div>
+          </div>
+          <div class="each-under">
+            <span class="svg-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="rgb(0, 98, 255)">
+                <path
+                  d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
+              </svg>
+            </span>
+            <div class="under-text">
+              <h4>Quality Assured</h4>
+              <span>Modern and tested devices</span>
+            </div>
+          </div>
+          <div class="each-under">
+            <span class="svg-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="rgb(0, 98, 255)">
+                <path
+                  d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z" />
+              </svg>
+            </span>
+            <div class="under-text">
+              <h4>Same-Day Delivery</h4>
+              <span>Emergency orders available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <div class="choice">
+    <div class="choice-head">
+      <h1>View Recent Devices Orders</h1>
+      <p>
+        From single devices to bulk orders for events, business - we've got you covered
+      </p>
+    </div>
+    <div class="choice-set">
+      <div class="choice-box">
+        <span class="eff">Cheap</span>
+        <main class="choice-svg">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11L160-252Zm320-228Z" />
+          </svg>
+        </main>
+        <div class="choice-text">
+          <h3>Standing Fan</h3>
+          <div class="text-choice">
+            <h2>$22</h2>
+            <span>for each</span>
+          </div>
+          <span>Buy 12, get 1 free</span>
+        </div>
+        <p>15 Orders</p>
+      </div>
+
+      <div class="choice-box">
+        <span class="eff">Most Popular</span>
+        <main class="choice-svg">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="M640-280q83 0 141.5-58.5T840-480q0-83-58.5-141.5T640-680q-27 0-52.5 7T540-653q29 36 44.5 80t15.5 93q0 49-15.5 93T540-307q22 13 47.5 20t52.5 7Zm-160-80q19-25 29.5-55.5T520-480q0-34-10.5-64.5T480-600q-19 25-29.5 55.5T440-480q0 34 10.5 64.5T480-360Zm-160 80q27 0 52.5-7t47.5-20q-29-36-44.5-80T360-480q0-49 15.5-93t44.5-80q-22-13-47.5-20t-52.5-7q-83 0-141.5 58.5T120-480q0 83 58.5 141.5T320-280Zm0 80q-117 0-198.5-81.5T40-480q0-117 81.5-198.5T320-760q45 0 85.5 13t74.5 37q34-24 74.5-37t85.5-13q117 0 198.5 81.5T920-480q0 117-81.5 198.5T640-200q-45 0-85.5-13T480-250q-34 24-74.5 37T320-200Z" />
+          </svg>
+        </main>
+        <div class="choice-text">
+          <h3>Refrigerator</h3>
+          <div class="text-choice">
+            <h2>$72</h2>
+            <span>for each</span>
+          </div>
+          <span>Buy 5, get 15% doscount</span>
+        </div>
+        <p>32 Orders</p>
+      </div>
+
+      <div class="choice-box">
+        <span class="eff">Awesome</span>
+        <main class="choice-svg">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="m256-120-56-56 193-194q23-23 35-52t12-61v-204l-64 63-56-56 160-160 160 160-56 56-64-63v204q0 32 12 61t35 52l193 194-56 56-224-224-224 224Z" />
+          </svg>
+        </main>
+        <div class="choice-text">
+          <h3>Phone Bulk Orders</h2>
+            <div class="text-choice">
+              <h2>$120</h2>
+              <span>per carton</span>
+            </div>
+            <span>20% discount on each carton</span>
+        </div>
+        <p>22 Orders</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dispenser-choice">
+    <div class="choice-head">
+      <div class="dispenser-top">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+          fill="rgb(0, 98, 255)">
+          <path
+            d="M491-200q12-1 20.5-9.5T520-230q0-14-9-22.5t-23-7.5q-41 3-87-22.5T343-375q-2-11-10.5-18t-19.5-7q-14 0-23 10.5t-6 24.5q17 91 80 130t127 35ZM480-80q-137 0-228.5-94T160-408q0-100 79.5-217.5T480-880q161 137 240.5 254.5T800-408q0 140-91.5 234T480-80Zm0-80q104 0 172-70.5T720-408q0-73-60.5-165T480-774Q361-665 300.5-573T240-408q0 107 68 177.5T480-160Zm0-320Z" />
+        </svg>
+        <p><b>ORDERED DISPENSERS</b></p>
+      </div>
+      <h1>View Recent Dispenser Orders</h1>
+      <p>
+        Ordered quality water dispenser with free installation and maintenance
+      </p>
+    </div>
+    <div class="dispenser-set">
+      <div class="each-dispenser">
+        <span class="eff">Most Popular</span>
+        <h3>Hot & Cold</h3>
+        <div class="each-text">
+          <h2>$25</h2>
+          <span>/month</span>
+        </div>
+        <div class="dispenser-mark">
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Hot & cold water dispensing</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Energy efficient</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Free installation</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Free maintenance</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>3 year warranty</span>
+          </div>
+        </div>
+        <p>22 Orders</p>
+      </div>
+      <div class="each-dispenser">
+        <span class="eff">Advanced</span>
+        <h3>Premium Cold</h3>
+        <div class="each-text">
+          <h2>$15</h2>
+          <span>/month</span>
+        </div>
+        <div class="dispenser-mark">
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Cold water only</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Compact design</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Free Installation</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Free maintenance</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>2 year warranty</span>
+          </div>
+        </div>
+        <p>15 Orders</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="goods">
+    <div class="choice-head">
+      <h1>Available Products</h1>
+      <p style="width: fit-content;">
+        Choose any products of your choice
+      </p>
+    </div>
+    <div class="products">
+      
+    </div>
+  </div>
+  
+
+  <div class="aid">
+    <div class="choice-head">
+      <div class="dispenser-top">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+          fill="rgb(0, 98, 255)">
+          <path
+            d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z" />
+        </svg>
+        <p><b>DISCOUNTED PLANS</b></p>
+      </div>
+      <h1>Purchase At Cheaper Amount</h1>
+      <p>
+        View the <b>DISCOUNTED PLANS</b> to buy goods in cheaper price
+      </p>
+    </div>
+    <div class="dispenser-set">
+      <div class="each-dispensers">
+        <span class="eff">LEVEL 1</span>
+        <h3>LEVEL 1</h3>
+        <div class="text-row">
+          <div class="each-text">
+            <h2>₦0</h2>
+            <span>/For Once</span>
+          </div>
+          <span>First discounted plans</span>
+        </div>
+        <div class="dispenser-mark">
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>3 discounted devices (20%)</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>20% discount on deliveries</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Free Maintenance of device</span>
+          </div>
+
+        </div>
+        <p>Buy Now</p>
+      </div>
+
+      <div class="each-dispensers">
+        <span class="eff">LEVEL 2</span>
+        <h3>LEVEL 2</h3>
+        <div class="text-row">
+          <div class="each-text">
+            <h2>₦30,000</h2>
+            <span>/For Once</span>
+          </div>
+          <span>Second discounted plans</span>
+        </div>
+        <div class="dispenser-mark">
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>6 discounted products (35%)</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>40% discount on deliveries</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Access to latest gadgets</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Priority Customer Support</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Access to tested gadgets</span>
+          </div>
+
+        </div>
+        <p>Coming Soon</p>
+      </div>
+
+      <div class="each-dispensers">
+        <span class="eff">LEVEL 3</span>
+        <h3>LEVEL 3</h3>
+        <div class="text-row">
+          <div class="each-text">
+            <h2>₦70,000</h2>
+            <span>/For Once</span>
+          </div>
+          <span>Mega discounted plans</span>
+        </div>
+        <div class="dispenser-mark">
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>10 discounted products (50%)</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>70% discount on deliveries</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Access to exclusive deals</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Elite devices unlocked</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Early access to new products</span>
+          </div>
+          <div class="each-mark">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="rgb(0, 98, 255)">
+              <path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z" />
+            </svg>
+            <span>Exclusive discount on purchases</span>
+          </div>
+
+        </div>
+        <p>Coming Soon</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="how">
+    <div class="choice-head">
+      <h1>How It Works</h1>
+      <p>
+        Getting quality gadgets delivered is simple with our 3-step process
+      </p>
+    </div>
+    <div class="box-set">
+      <div class="box">
+        <b class="num">1</b>
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="M280-80q-33 0-56.5-23.5T200-160q0-33 23.5-56.5T280-240q33 0 56.5 23.5T360-160q0 33-23.5 56.5T280-80Zm400 0q-33 0-56.5-23.5T600-160q0-33 23.5-56.5T680-240q33 0 56.5 23.5T760-160q0 33-23.5 56.5T680-80ZM246-720l96 200h280l110-200H246Zm-38-80h590q23 0 35 20.5t1 41.5L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68-39.5t-2-78.5l54-98-144-304H40v-80h130l38 80Zm134 280h280-280Z" />
+          </svg>
+        </span>
+        <h2>Choose Your Product</h2>
+        <span>Select from smartphones, refrigerators, or bulk orders.</span>
+      </div>
+
+      <div class="box">
+        <b class="num">2</b>
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
+          </svg>
+        </span>
+        <h2>Schedule Location</h2>
+        <span>Pick your preferred location. We offer same-day emergency delivery too.</span>
+      </div>
+
+      <div class="box">
+        <b class="num">3</b>
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+            fill="rgb(0, 98, 255)">
+            <path
+              d="M600-800H360v280h240v-280Zm200 0H680v280h120v-280ZM575-440H320v240h222q21 0 40.5-7t35.5-21l166-137q-8-8-18-12t-21-6q-17-3-33 1t-30 15l-108 87H400v-80h146l44-36q5-3 7.5-8t2.5-11q0-10-7.5-17.5T575-440Zm-335 0h-80v280h80v-280Zm40 0v-360q0-33 23.5-56.5T360-880h440q33 0 56.5 23.5T880-800v280q0 33-23.5 56.5T800-440H280ZM240-80h-80q-33 0-56.5-23.5T80-160v-280q0-33 23.5-56.5T160-520h415q85 0 164 29t127 98l27 41-223 186q-27 23-60 34.5T542-120H309q-11 18-29 29t-40 11Z" />
+          </svg>
+        </span>
+        <h2>Receive & Enjoy</h2>
+        <span>Our professional team delivers good, high quality devices right to your doorstep</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="why">
+    <div class="choice-head">
+      <h1>Why Choose Us</h1>
+      <p>
+        We're commited to providing the best appliances for delivery experience
+      </p>
+    </div>
+    <div class="why-set">
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8"><path d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"/></svg>
+        </span>
+        <h2>Premium Quality Device</h2>
+        <span>Multi-stage purification process ensures every device is standard, comfortable, and refreshing.</span>
+      </div>
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path
+              d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z" />
+          </svg>
+        </span>
+        <h2>Same-Day Delivery</h2>
+        <span>Need appliances urgently? Our emergency delivery service gets it to you within hours.</span>
+      </div>
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path
+              d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 152-90.5 276.5T480-80Zm0-84q104-33 172-132t68-220v-189l-240-90-240 90v189q0 121 68 220t172 132Zm0-316Z" />
+          </svg>
+        </span>
+        <h2>Quality Guaranted</h2>
+        <span>All our appliances undergoes rigorous testing and quality control checks.</span>
+      </div>
+
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path
+              d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z" />
+          </svg>
+        </span>
+        <h2>Flexible Scheduling</h2>
+        <span>We are available in any location. Choose delivery locations that work for you.</span>
+      </div>
+
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path
+              d="M480-440q-50 0-85-35t-35-85q0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35ZM240-40v-309q-38-42-59-96t-21-115q0-134 93-227t227-93q134 0 227 93t93 227q0 61-21 115t-59 96v309l-240-80-240 80Zm240-280q100 0 170-70t70-170q0-100-70-170t-170-70q-100 0-170 70t-70 170q0 100 70 170t170 70ZM320-159l160-41 160 41v-124q-35 20-75.5 31.5T480-240q-44 0-84.5-11.5T320-283v124Zm160-62Z" />
+          </svg>
+        </span>
+        <h2>Licensed & Certified</h2>
+        <span>We meet all environment rules and safety standards with full certification and licensing.</span>
+      </div>
+
+      <div class="why-box">
+        <span class="svgs-hold">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path
+              d="M40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm720 0v-120q0-44-24.5-84.5T666-434q51 6 96 20.5t84 35.5q36 20 55 44.5t19 53.5v120H760ZM360-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47Zm400-160q0 66-47 113t-113 47q-11 0-28-2.5t-28-5.5q27-32 41.5-71t14.5-81q0-42-14.5-81T544-792q14-5 28-6.5t28-1.5q66 0 113 47t47 113ZM120-240h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0 320Zm0-400Z" />
+          </svg>
+        </span>
+        <h2>Dedicated Support</h2>
+        <span>Our customer service team is always ready to help with any questions or issues</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="say">
+    <div class="choice-head">
+      <h1>What Our Customers Say</h1>
+      <p>
+        Join thousands of satisfied customers enjoying satisfying appliance delivery
+      </p>
+    </div>
+    <div class="why-set">
+      <div class="say-box">
+        <span>⭐⭐⭐⭐⭐</span>
+        <span>"Best device delivery service I've used! Always on time, great quality gadgets, and the discount model
+          saves me so much hassle. Highly recommend!"</span>
+        <div class="say-div">
+          <div class="say-pic">S</div>
+          <div class="say-det">
+            <h3>Sarah Johnson</h3>
+            <span>Homemaker</span>
+          </div>
+        </div>
+      </div>
+      <div class="say-box">
+        <span>⭐⭐⭐⭐⭐</span>
+        <span>"We've been using this service for our office for 6 months now. The device bulk ordering and dispenser price
+          make it perfect for our needs. Professional and reliable"</span>
+        <div class="say-div">
+          <div class="say-pic">M</div>
+          <div class="say-det">
+            <h3>Micheal Chen</h3>
+            <span>Office Manager</span>
+          </div>
+        </div>
+      </div>
+      <div class="say-box">
+        <span>⭐⭐⭐⭐⭐</span>
+        <span>"The emergency same-hour delivery has saved us multiple times when we ran low. Customer service is excellent
+          and the appliance qualtiy is consistently great"</span>
+        <div class="say-div">
+          <div class="say-pic">A</div>
+          <div class="say-det">
+            <h3>Aisha Mohammed</h3>
+            <span>Restuarant Owner</span>
+          </div>
+        </div>
+      </div>
+      <div class="say-box">
+        <span>⭐⭐⭐⭐⭐</span>
+        <span>"I order bulk devices for events regularly. The team is always responsive and the delivery is always
+          punctual. Makes my job so much easier!"</span>
+        <div class="say-div">
+          <div class="say-pic">D</div>
+          <div class="say-det">
+            <h3>David Williams</h3>
+            <span>Event Planner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="FAQ">
+    <div class="choice-head">
+      <h1>Frequently Asked Questions</h1>
+      <p>
+        Got questions? We've got answers
+      </p>
+    </div>
+    <div class="question-box">
+      <div class="each-question" onclick="display(this)">
+        <div class="question-part">
+          <h4>What areas do you deliver to?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">We deliver to all major locations within the city and nearby surrounding areas. You just have to choose any location suitable for you!.</span>
+      </div>
+
+      <div class="each-question" onclick="display(this)">
+        <div class="question-part">
+          <h4>How long does delivery take?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">Delivery usually takes 3 - 5 minutes no matter how far you are. In most cases, orders
+          placed early in the day are delivered in the next 4 minutes.</span>
+      </div>
+
+      <div class="each-question" onclick="display(this)">
+        <div class="question-part">
+          <h4>Are the appliances safe to use?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">Yes. Our devices goes through strict testing and quality-control processes to ensure it
+          is easy-handling, safe, and comfortable for living.</span>
+      </div>
+
+
+
+      <div class="each-question" onclick="display(this)">
+        <div class="question-part">
+          <h4>What payments method do you accept?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">We accept secure online payments via Paystack, which supports debit cards, bank transfers,
+          USSD, and other safe payment options.</span>
+      </div>
+
+      <div class="each-question" id="long" onclick="display(this)">
+        <div class="question-part">
+          <h4>How do i return damaged devices?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">Simply hand over your damaged devices to our delivery agent during your next delivery or schedule a pickup if you don’t have an upcoming order.</span>
+      </div>
+
+      <div class="each-question" onclick="display(this)">
+        <div class="question-part">
+          <h4>What if i'm not home during delivery?</h4>
+
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+          </svg>
+
+        </div>
+        <span class="answer">If you're not available, our delivery agent will contact you to if we are to stop the delivery or arrange a
+          safe drop-off location.</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="map" >
+    <div class="choice-head">
+      <h1>Locate Us</h1>
+      <p>
+        Get to know where we are located
+      </p>
+    </div>
+  
+
+<iframe id="flownt" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.343297583665!2d3.8789679740034746!3d7.4272086925834255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1039f2ceaac1f66b%3A0xe0e85f6ca0ffe2c8!2sWest%20Africa%20Examination%20Council%20Zonal%20Office!5e0!3m2!1sen!2sng!4v1764684134480!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+<a href="https://www.google.com/maps/place/West+Africa+Examination+Council+Zonal+Office/@7.4271556,3.8118794,13z/data=!4m10!1m2!2m1!1sWAEC+office+ibadan!3m6!1s0x1039f2ceaac1f66b:0xe0e85f6ca0ffe2c8!8m2!3d7.4272087!4d3.8815429!15sChJXQUVDIG9mZmljZSBpYmFkYW6SARBjb3Jwb3JhdGVfb2ZmaWNl4AEA!16s%2Fg%2F1tfthbm8?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+  Get Directions to Us
+</a>
+
+</div>
+
+
+  <div class="track">
+    <div class="choice-head">
+      <h1>View Your Delivery</h1>
+      <p>
+        Real-time updates on your appliance delivery status
+      </p>
+    </div>
+    <div class="track-box">
+      <div class="track-nav">
+        <div class="track-det">
+          <h3>Water Dispenser</h3>
+          <span id="flowi">10kg Gallon ~ Scheduled for Today at 10:35 AM</span>
+        </div>
+        <b>In Transit</b>
+      </div>
+      <div class="track-loc">
+        <div class="track-area">
+          <div class="line"></div>
+          <div class="area-track">
+            <span class="svg2-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="rgb(0, 98, 255)">
+                <path
+                  d="M440-183v-274L200-596v274l240 139Zm80 0 240-139v-274L520-457v274Zm-40-343 237-137-237-137-237 137 237 137ZM160-252q-19-11-29.5-29T120-321v-318q0-22 10.5-40t29.5-29l280-161q19-11 40-11t40 11l280 161q19 11 29.5 29t10.5 40v318q0 22-10.5 40T800-252L520-91q-19 11-40 11t-40-11L160-252Zm320-228Z" />
+              </svg>
+            </span>
+            <h3 id="conf">Order Confirmed</h3>
+          </div>
+          <span class="time">10:29 AM</span>
+        </div>
+
+        <div class="track-area">
+          <div class="line"></div>
+          <div class="area-track">
+            <span class="svg2-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#2e73b8">
+                <path
+                  d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z" />
+              </svg>
+            </span>
+            <h3 id="conf">Out for Delivery</h3>
+          </div>
+          <span class="time">10:30 AM</span>
+        </div>
+
+        <div class="track-area">
+          <div class="line2"></div>
+          <div class="area-track">
+            <span class="svg3-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#2e73b8">
+                <path
+                  d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z" />
+              </svg>
+            </span>
+            <h3 id="confs">Arriving Soon</h3>
+          </div>
+          <span class="time">Est. 10:33 PM</span>
+        </div>
+
+        <div class="track-area">
+          <div class="area-track">
+            <span class="svg3-hold">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#2e73b8">
+                <path
+                  d="M600-800H360v280h240v-280Zm200 0H680v280h120v-280ZM575-440H320v240h222q21 0 40.5-7t35.5-21l166-137q-8-8-18-12t-21-6q-17-3-33 1t-30 15l-108 87H400v-80h146l44-36q5-3 7.5-8t2.5-11q0-10-7.5-17.5T575-440Zm-335 0h-80v280h80v-280Zm40 0v-360q0-33 23.5-56.5T360-880h440q33 0 56.5 23.5T880-800v280q0 33-23.5 56.5T800-440H280ZM240-80h-80q-33 0-56.5-23.5T80-160v-280q0-33 23.5-56.5T160-520h415q85 0 164 29t127 98l27 41-223 186q-27 23-60 34.5T542-120H309q-11 18-29 29t-40 11Z" />
+              </svg>
+            </span>
+            <h3 id="confs">Delivered</h3>
+          </div>
+          <span class="time">Pending</span>
+        </div>
+      </div>
+
+      <div class="track-get">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2e73b8">
+          <path
+            d="M240-160q-50 0-85-35t-35-85H40v-440q0-33 23.5-56.5T120-800h560v160h120l120 160v200h-80q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85 35Zm0-80q17 0 28.5-11.5T280-280q0-17-11.5-28.5T240-320q-17 0-28.5 11.5T200-280q0 17 11.5 28.5T240-240ZM120-360h32q17-18 39-29t49-11q27 0 49 11t39 29h272v-360H120v360Zm600 120q17 0 28.5-11.5T760-280q0-17-11.5-28.5T720-320q-17 0-28.5 11.5T680-280q0 17 11.5 28.5T720-240Zm-40-200h170l-90-120h-80v120ZM360-540Z" />
+        </svg>
+
+        <div class="get-det">
+          <h3 id="conf">Driver: John Smith</h3>
+          <b>Your delivery is on the way! Contact driver: 0916 306 7741</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="touch">
+      <div class="choice-head">
+        <h1>Get in Touch</h1>
+        <p>Have questions? We're here to help you 24/7</p>
+      </div>
+
+      <div class="touch-set">
+        <div class="left-set">
+          <div class="top-set">
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"
+                  />
+                </svg>
+              </span>
+              <h2>Phone</h2>
+              <div class="set-child">
+                <span>0916 306 7741</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"
+                  />
+                </svg>
+              </span>
+              <h2>Email</h2>
+              <div class="set-child">
+                <span>adebayoq1234567@gmail.com</span>
+                <span>adebayoq12345@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"
+                  />
+                </svg>
+              </span>
+              <h2>Address</h2>
+              <div class="set-child">
+                <span>Beside WAEC Office</span>
+                <span>Ijokodo, Ibadan</span>
+              </div>
+            </div>
+
+            <div class="set-box">
+              <span class="svgs-hold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="24px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#2e73b8"
+                >
+                  <path
+                    d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+                  />
+                </svg>
+              </span>
+              <h2>Hours</h2>
+              <div class="set-child">
+                <span>Mon-Sat: 7AM - 8PM</span>
+                <span>Sun: 8AM - 6PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-set">
+            <div class="set-nav">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="19px"
+                viewBox="0 -960 960 960"
+                width="19px"
+                fill="#2e73b8"
+              >
+                <path
+                  d="m612-292 56-56-148-148v-184h-80v216l172 172ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"
+                />
+              </svg>
+              <h4>Emergency Service</h4>
+            </div>
+            <span>Need appliances urgently? Call our emergency hotline:</span>
+            <h3>0916 306 7741</h3>
+          </div>
+        </div>
+        <div class="right-set">
+          <div class="form-set">
+            <h2>Send us a Message</h2>
+            <div class="separate">
+              <div class="form-group">
+                <div class="label2-con">
+                  <label for="">First Name</label>
+                  <input type="text" id="firstName" placeholder="John" />
+                </div>
+                <div class="label2-con">
+                  <label for="">Last Name</label>
+                  <input type="text" id="lastName" placeholder="Doe" />
+                </div>
+              </div>
+              <div class="label-con">
+                <label for="">Email</label>
+                <input type="email" id="email" placeholder="john@example.com" />
+              </div>
+              <div class="label-con">
+                <label for="">Number</label>
+                <input
+                  type="number"
+                  id="number"
+                  placeholder="+1 (555) 000-0000"
+                />
+              </div>
+              <textarea
+                id="message"
+                placeholder="How can we help you"
+              ></textarea>
+              <button id="send">Send Message</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="footer">
+    <div class="first-foot">
+      <div class="foot-top">
+        <span style="display: flex; width: 35px; height: 35px; background: #2e73b8; border-radius: 50%; align-items: center; justify-content: center;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="white"><path d="m452-160 200-390H512v-250L312-410h140v250Zm28 80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q133 0 226.5-93.5T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160Z"/></svg>
+      </span>
+      <h2>Sparkle Tech</h2>
+      </div>
+      <span>Your trusted partner for good devices and delivery services. Fast, reliable, and always on time</span>
+    </div>
+    <div class="second-foot">
+        <h3>Services</h3>
+        <p>Sell Electronics</p>
+        <span>Products Delivery</span>
+        <span>Bulk Orders</span>
+        <span>Discounted Products</span>
+      </div>
+    <div class="first-foot">
+      <h3>Company</h3>
+      <p>About Us</p>
+      <span>Contack</span>
+      <span>Careers</span>
+      <span>Blog</span>
+    </div>
+    <div class="first-foot">
+      <h3>Support</h3>
+      <p>Help Center</p>
+      <span>Track Order</span>
+      <span>privacy Policy</span>
+      <span>Terms of Service</span>
+    </div>
+  </div>
+  </div>
+
+  
+  <div id="main">
+    
+  </div>
+  
+  
+</body>
+
+</html>
+
+<script src="index.obf.js"></script>
