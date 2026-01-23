@@ -717,8 +717,10 @@ textarea {
   align-items: center;
   justify-content: space-between;
   height: 470px;
-  box-shadow: 0 0 7px rgba(128, 128, 128, 0.471),
-    0 0 14px rgba(128, 128, 128, 0.471), 0 0 21px rgba(128, 128, 128, 0.471);
+  box-shadow:
+    0 0 7px rgba(128, 128, 128, 0.471),
+    0 0 14px rgba(128, 128, 128, 0.471),
+    0 0 21px rgba(128, 128, 128, 0.471);
   border-radius: 15px;
   overflow: hidden;
 }
@@ -1888,20 +1890,20 @@ textarea {
   left: 4.5%;
 }
 #line1 {
-  transition: all 60s ease;
+  transition: all 60s linear;
   border-radius: 10px;
   height: 0%;
   background: #2e73b8;
   width: 100%;
 }
 #line2 {
-  transition: all 120s ease;
+  transition: all 120s linear;
   height: 0%;
   background: #2e73b8;
   width: 100%;
 }
 #line3 {
-  transition: all 60s ease;
+  transition: all 60s linear;
   height: 0%;
   background: #2e73b8;
   width: 100%;
@@ -2116,7 +2118,8 @@ textarea {
   padding: 0 0 5px;
   z-index: 1;
   background: white;
-  box-shadow: 0 0 10px rgba(128, 128, 128, 0.685),
+  box-shadow:
+    0 0 10px rgba(128, 128, 128, 0.685),
     0 0 20px rgba(128, 128, 128, 0.685);
   right: 10px;
   transition: all 0.5s ease;
@@ -2268,7 +2271,8 @@ textarea {
   position: fixed;
   z-index: 6;
   background: white;
-  box-shadow: 0 0 10px rgba(128, 128, 128, 0.76),
+  box-shadow:
+    0 0 10px rgba(128, 128, 128, 0.76),
     0 0 20px rgba(128, 128, 128, 0.76);
   width: 350px;
   border-radius: 10px;
