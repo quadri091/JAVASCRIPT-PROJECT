@@ -42,7 +42,6 @@ body {
     height: 7px;
     background: #347fc9;
     overflow: hidden;
-    transition: all 3s linear;
   }
   .content {
     display: flex;
